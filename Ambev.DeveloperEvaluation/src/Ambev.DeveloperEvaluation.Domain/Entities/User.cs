@@ -53,12 +53,12 @@ public class User : BaseEntity, IUser
     /// <summary>
     /// Gets the date and time when the user was created.
     /// </summary>
-    public DateTime CreatedAt { get; set; }
+    //public DateTime CreatedAt { get; set; }
 
     /// <summary>
     /// Gets the date and time of the last update to the user's information.
     /// </summary>
-    public DateTime? UpdatedAt { get; set; }
+    //public DateTime? UpdatedAt { get; set; }
 
     /// <summary>
     /// Gets the unique identifier of the user.
@@ -81,10 +81,10 @@ public class User : BaseEntity, IUser
     /// <summary>
     /// Initializes a new instance of the User class.
     /// </summary>
-    public User()
-    {
-        CreatedAt = DateTime.UtcNow;
-    }
+    //public User()
+    //{
+    //    CreatedAt = DateTime.UtcNow;
+    //}
 
     /// <summary>
     /// Performs validation of the user entity using the UserValidator rules.
@@ -118,21 +118,21 @@ public class User : BaseEntity, IUser
     /// Activates the user account.
     /// Changes the user's status to Active.
     /// </summary>
-    public void Activate()
-    {
-        Status = UserStatus.Active;
-        UpdatedAt = DateTime.UtcNow;
-    }
+    //public void Activate()
+    //{
+    //    Status = UserStatus.Active;
+    //    UpdatedAt = DateTime.UtcNow;
+    //}
 
-    /// <summary>
-    /// Deactivates the user account.
-    /// Changes the user's status to Inactive.
-    /// </summary>
-    public void Deactivate()
-    {
-        Status = UserStatus.Inactive;
-        UpdatedAt = DateTime.UtcNow;
-    }
+    ///// <summary>
+    ///// Deactivates the user account.
+    ///// Changes the user's status to Inactive.
+    ///// </summary>
+    //public void Deactivate()
+    //{
+    //    Status = UserStatus.Inactive;
+    //    UpdatedAt = DateTime.UtcNow;
+    //}
 
     /// <summary>
     /// Blocks the user account.
@@ -141,6 +141,6 @@ public class User : BaseEntity, IUser
     public void Suspend()
     {
         Status = UserStatus.Suspended;
-        UpdatedAt = DateTime.UtcNow;
+       // UpdatedAt = DateTime.UtcNow;
     }
 }

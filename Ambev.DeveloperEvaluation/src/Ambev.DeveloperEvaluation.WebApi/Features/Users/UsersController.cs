@@ -8,6 +8,9 @@ using Ambev.DeveloperEvaluation.WebApi.Features.Users.DeleteUser;
 using Ambev.DeveloperEvaluation.Application.Users.CreateUser;
 using Ambev.DeveloperEvaluation.Application.Users.GetUser;
 using Ambev.DeveloperEvaluation.Application.Users.DeleteUser;
+using Ambev.DeveloperEvaluation.Business;
+using Ambev.DeveloperEvaluation.Domain.Repositories;
+using Ambev.DeveloperEvaluation.Domain.Entities;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Users;
 
@@ -20,16 +23,19 @@ public class UsersController : BaseController
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
+    private readonly IUserBusiness _business;
 
     /// <summary>
     /// Initializes a new instance of UsersController
     /// </summary>
     /// <param name="mediator">The mediator instance</param>
     /// <param name="mapper">The AutoMapper instance</param>
-    public UsersController(IMediator mediator, IMapper mapper)
+    /// <param name="business">The UserBusiness instance</param>
+    public UsersController(IMediator mediator, IMapper mapper, IUserBusiness business)
     {
         _mediator = mediator;
         _mapper = mapper;
+        _business = business;
     }
 
     /// <summary>
@@ -49,10 +55,10 @@ public class UsersController : BaseController
         if (!validationResult.IsValid)
             return BadRequest(validationResult.Errors);
 
-        var command = _mapper.Map<CreateUserCommand>(request);
+        var command = _mapper.Map<User>(request);
 
-
-        var response = await _mediator.Send(command, cancellationToken);
+        var response = _business.CreateAsync(command, cancellationToken);
+        //var response = await _mediator.Send(command, cancellationToken);
 
         return Created(string.Empty, new ApiResponseWithData<CreateUserResponse>
         {
