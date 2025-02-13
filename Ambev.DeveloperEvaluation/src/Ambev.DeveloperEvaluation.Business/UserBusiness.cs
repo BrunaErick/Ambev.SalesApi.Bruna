@@ -27,7 +27,7 @@ namespace Ambev.DeveloperEvaluation.Business
         /// <param name="user">The user to create</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The created user</returns>
-        public async Task<User> CreateAsync(User user, CancellationToken cancellationToken = default)
+        public async Task<Guid> CreateAsync(User user, CancellationToken cancellationToken = default)
         {
            return  await _repo.CreateAsync(user, cancellationToken);
         }

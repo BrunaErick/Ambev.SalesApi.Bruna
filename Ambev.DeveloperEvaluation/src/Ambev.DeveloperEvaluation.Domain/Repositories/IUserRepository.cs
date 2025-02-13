@@ -13,7 +13,7 @@ public interface IUserRepository
     /// <param name="user">The user to create</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The created user</returns>
-    Task<User> CreateAsync(User user, CancellationToken cancellationToken = default);
+    Task<Guid> CreateAsync(User user, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Retrieves a user by their unique identifier

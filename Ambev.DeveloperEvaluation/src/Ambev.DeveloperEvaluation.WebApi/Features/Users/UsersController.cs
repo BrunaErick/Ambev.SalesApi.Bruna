@@ -58,14 +58,23 @@ public class UsersController : BaseController
         var command = _mapper.Map<User>(request);
 
         var response = _business.CreateAsync(command, cancellationToken);
-        //var response = await _mediator.Send(command, cancellationToken);
-
-        return Created(string.Empty, new ApiResponseWithData<CreateUserResponse>
+        if (response.Result != Guid.Empty) 
         {
-            Success = true,
-            Message = "User created successfully",
-            Data = _mapper.Map<CreateUserResponse>(response)
-        });
+            command.Id = (Guid)response.Result;
+            return Created(string.Empty, new ApiResponseWithData<CreateUserResponse>
+            {
+                Success = true,
+                Message = "User created successfully",
+                Data = _mapper.Map<CreateUserResponse>(command)
+            });
+        }        
+        else
+            return Conflict(new ApiResponseWithData<CreateUserResponse>
+            {
+                Success = false,
+                Message = "Error",
+                Data = _mapper.Map<CreateUserResponse>(command)
+            });
     }
 
     /// <summary>

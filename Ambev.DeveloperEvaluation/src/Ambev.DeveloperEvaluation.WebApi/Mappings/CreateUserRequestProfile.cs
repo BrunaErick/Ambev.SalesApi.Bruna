@@ -12,5 +12,7 @@ public class CreateUserRequestProfile : Profile
         CreateMap<CreateUserRequest, CreateUserCommand>();
         CreateMap<CreateUserRequest, User>();
         CreateMap<User, CreateUserRequest>();
+        CreateMap<CreateUserResponse, User>();
+        CreateMap<User, CreateUserResponse>();
     }
 }
