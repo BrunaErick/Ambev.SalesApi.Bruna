@@ -1,43 +1,57 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using Ambev.DeveloperEvaluation.WebApi.Common;
+using Ambev.DeveloperEvaluation.WebApi.Features.Auth.AuthenticateUserFeature;
+using Ambev.DeveloperEvaluation.Application.Auth.AuthenticateUser;
+using Ambev.DeveloperEvaluation.Application.Users.GetUser;
+using Ambev.DeveloperEvaluation.WebApi.Features.Users.GetUser;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class SalesController : ControllerBase
+    [Route("api/[controller]")]
+    public class SalesController : BaseController
     {
-        // GET: api/<SalesController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
+
+        /// <summary>
+        /// Initializes a new instance of UsersController
+        /// </summary>
+        /// <param name="mediator">The mediator instance</param>
+        /// <param name="mapper">The AutoMapper instance</param>
+        public SalesController(IMediator mediator, IMapper mapper)
         {
-            return new string[] { "value1", "value2" };
+            _mediator = mediator;
+            _mapper = mapper;
         }
 
-        // GET api/<SalesController>/5
+        /// <summary>
+        /// Retrieves a user by their ID
+        /// </summary>
+        /// <param name="id">The unique identifier of the user</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>The user details if found</returns>
         [HttpGet("{id}")]
-        public string Get(int id)
+        [ProducesResponseType(typeof(ApiResponseWithData<GetUserResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetSale([FromRoute] Guid id)
         {
-            return "value";
+            var request = new GetUserRequest { Id = id };
+            var validator = new GetUserRequestValidator();
+
+            var command = _mapper.Map<GetUserCommand>(request.Id);
+            var response = await _mediator.Send(command);
+
+            return Ok(new ApiResponseWithData<GetUserResponse>
+            {
+                Success = true,
+                Message = "User retrieved successfully",
+                Data = _mapper.Map<GetUserResponse>(response)
+            });
         }
 
-        // POST api/<SalesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<SalesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<SalesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
