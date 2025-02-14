@@ -57,7 +57,26 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                    table.PrimaryKey("PK_Carts", x => x.Id);
                });
 
+            // Criação da tabela CartProducts com um campo de identidade como chave primária
+            migrationBuilder.CreateTable(
+                name: "CartProducts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),  // Auto incremento
+                    CartId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    // Data opcional para adicionar quando o produto foi adicionado ao carrinho (exemplo)
+                    AddedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETDATE()")
+                },
+                constraints: table =>
+                {
+                    // Define 'Id' como chave primária
+                    table.PrimaryKey("PK_CartProducts", x => x.Id);
 
+                    // Não há chaves estrangeiras, apenas os campos CartId e ProductId são adicionados sem restrições
+                });
         }
 
         /// <inheritdoc />
@@ -71,6 +90,9 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
 
             migrationBuilder.DropTable(
             name: "Carts");
+
+            migrationBuilder.DropTable(
+                name: "CartProducts");
         }
     }
 }
