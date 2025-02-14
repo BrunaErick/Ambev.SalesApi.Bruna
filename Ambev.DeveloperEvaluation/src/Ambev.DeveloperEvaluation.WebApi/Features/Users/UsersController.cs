@@ -77,7 +77,7 @@ public class UsersController : BaseController
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The user details if found</returns>
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(ApiResponseWithData<GetUserResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponseWithData<GetUserResult>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetUser([FromRoute] Guid id, CancellationToken cancellationToken)
@@ -85,18 +85,18 @@ public class UsersController : BaseController
         var response = _business.GetByIdAsync(id, cancellationToken);
 
         if(!string.IsNullOrEmpty(((User)response.Result).Username))
-        return Ok(new ApiResponseWithData<GetUserResponse>
+        return Ok(new ApiResponseWithData<GetUserResult>
         {
             Success = true,
             Message = "User retrieved successfully",
-            Data = _mapper.Map<GetUserResponse>(response)
+            Data = _mapper.Map<GetUserResult>(response.Result)
         });
         else
-            return NotFound(new ApiResponseWithData<GetUserResponse>
+            return NotFound(new ApiResponseWithData<GetUserResult>
             {
                 Success = false,
                 Message = "Not Found",
-                Data = _mapper.Map<GetUserResponse>(response)
+                Data = _mapper.Map<GetUserResult>(response.Result)
             });
     }
 
@@ -121,11 +121,10 @@ public class UsersController : BaseController
                 Message = "User deleted successfully"
             });
         else
-             return BadRequest(new ApiResponseWithData<GetUserResponse>
+             return BadRequest(new ApiResponseWithData<GetUserResult>
             {
                 Success = false,
-                Message = "Error",
-                Data = _mapper.Map<GetUserResponse>(response)
+                Message = "Error"
             });
     }
 }
