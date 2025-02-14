@@ -8,7 +8,7 @@ using Ambev.DeveloperEvaluation.Common.Security;
 namespace Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
 
 /// <summary>
-/// Handler for processing CreateUserCommand requests
+/// Handler for processing CreateProductCommand requests
 /// </summary>
 public class CreateProductHandler : IRequestHandler<CreateProductCommand, CreateProductResult>
 {
@@ -17,11 +17,11 @@ public class CreateProductHandler : IRequestHandler<CreateProductCommand, Create
     private readonly IPasswordHasher _passwordHasher;
 
     /// <summary>
-    /// Initializes a new instance of CreateUserHandler
+    /// Initializes a new instance of CreateProductHandler
     /// </summary>
     /// <param name="userRepository">The user repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
-    /// <param name="validator">The validator for CreateUserCommand</param>
+    /// <param name="validator">The validator for CreateProductCommand</param>
     public CreateProductHandler(IUserRepository userRepository, IMapper mapper, IPasswordHasher passwordHasher)
     {
         _userRepository = userRepository;
@@ -30,11 +30,11 @@ public class CreateProductHandler : IRequestHandler<CreateProductCommand, Create
     }
 
     /// <summary>
-    /// Handles the CreateUserCommand request
+    /// Handles the CreateProductCommand request
     /// </summary>
-    /// <param name="command">The CreateUser command</param>
+    /// <param name="command">The CreateProduct command</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>The created user details</returns>
+    /// <returns>The created product details</returns>
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
         var validator = new CreateProductCommandValidator();

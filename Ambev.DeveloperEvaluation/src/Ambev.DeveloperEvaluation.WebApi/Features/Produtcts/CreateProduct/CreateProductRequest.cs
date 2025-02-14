@@ -3,14 +3,14 @@
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
 
 /// <summary>
-/// Represents a request to create a new user in the system.
+/// Represents a request to create a new product in the system.
 /// </summary>
 public class CreateProductRequest
 {
     /// <summary>
-    /// Gets or sets the username. Must be unique and contain only valid characters.
+    /// Gets or sets the productname. Must be unique and contain only valid characters.
     /// </summary>
-    public string Username { get; set; } = string.Empty;
+    public string productname { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the password. Must meet security requirements.
@@ -27,13 +27,4 @@ public class CreateProductRequest
     /// </summary>
     public string Email { get; set; } = string.Empty;
 
-    /// <summary>
-    /// Gets or sets the initial status of the user account.
-    /// </summary>
-    public UserStatus Status { get; set; }
-
-    /// <summary>
-    /// Gets or sets the role assigned to the user.
-    /// </summary>
-    public UserRole Role { get; set; }
 }

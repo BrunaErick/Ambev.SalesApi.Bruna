@@ -3,19 +3,19 @@ using MediatR;
 namespace Ambev.DeveloperEvaluation.Application.Products.DeleteProduct;
 
 /// <summary>
-/// Command for deleting a user
+/// Command for deleting a product
 /// </summary>
 public record DeleteProductCommand : IRequest<DeleteProductResponse>
 {
     /// <summary>
-    /// The unique identifier of the user to delete
+    /// The unique identifier of the product to delete
     /// </summary>
     public Guid Id { get; }
 
     /// <summary>
-    /// Initializes a new instance of DeleteUserCommand
+    /// Initializes a new instance of DeleteproductCommand
     /// </summary>
-    /// <param name="id">The ID of the user to delete</param>
+    /// <param name="id">The ID of the product to delete</param>
     public DeleteProductCommand(Guid id)
     {
         Id = id;

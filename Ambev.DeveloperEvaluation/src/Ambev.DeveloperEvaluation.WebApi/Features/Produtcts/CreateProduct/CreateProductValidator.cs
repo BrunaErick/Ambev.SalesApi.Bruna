@@ -5,12 +5,12 @@ using FluentValidation;
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
 
 /// <summary>
-/// Validator for CreateUserRequest that defines validation rules for user creation.
+/// Validator for CreateProductRequest that defines validation rules for user creation.
 /// </summary>
 public class CreateProductValidator : AbstractValidator<CreateProductRequest>
 {
     /// <summary>
-    /// Initializes a new instance of the CreateUserRequestValidator with defined validation rules.
+    /// Initializes a new instance of the CreateProductRequestValidator with defined validation rules.
     /// </summary>
     /// <remarks>
     /// Validation rules include:
@@ -24,10 +24,7 @@ public class CreateProductValidator : AbstractValidator<CreateProductRequest>
     public CreateProductValidator()
     {
         RuleFor(user => user.Email).SetValidator(new EmailValidator());
-        RuleFor(user => user.Username).NotEmpty().Length(3, 50);
         RuleFor(user => user.Password).SetValidator(new PasswordValidator());
         RuleFor(user => user.Phone).Matches(@"^\+?[1-9]\d{1,14}$");
-        RuleFor(user => user.Status).NotEqual(UserStatus.Unknown);
-        RuleFor(user => user.Role).NotEqual(UserRole.None);
     }
 }

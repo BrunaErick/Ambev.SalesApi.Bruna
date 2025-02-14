@@ -3,12 +3,12 @@ using FluentValidation;
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProduct;
 
 /// <summary>
-/// Validator for GetUserRequest
+/// Validator for GerProductRequest
 /// </summary>
 public class GetProductRequestValidator : AbstractValidator<GetProductRequest>
 {
     /// <summary>
-    /// Initializes validation rules for GetUserRequest
+    /// Initializes validation rules for GerProductRequest
     /// </summary>
     public GetProductRequestValidator()
     {

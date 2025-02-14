@@ -3,37 +3,28 @@ using Ambev.DeveloperEvaluation.Domain.Enums;
 namespace Ambev.DeveloperEvaluation.Application.Products.GetProduct;
 
 /// <summary>
-/// Response model for GetUser operation
+/// Response model for Getproduct operation
 /// </summary>
 public class GetProductResult
 {
     /// <summary>
-    /// The unique identifier of the user
+    /// The unique identifier of the product
     /// </summary>
     public Guid Id { get; set; }
 
     /// <summary>
-    /// The user's full name
+    /// The product's full name
     /// </summary>
     public string Name { get; set; } = string.Empty;
 
     /// <summary>
-    /// The user's email address
+    /// The product's email address
     /// </summary>
     public string Email { get; set; } = string.Empty;
 
     /// <summary>
-    /// The user's phone number
+    /// The product's phone number
     /// </summary>
     public string Phone { get; set; } = string.Empty;   
 
-    /// <summary>
-    /// The user's role in the system
-    /// </summary>
-    public UserRole Role { get; set; }
-
-    /// <summary>
-    /// The current status of the user
-    /// </summary>
-    public UserStatus Status { get; set; }
 }
