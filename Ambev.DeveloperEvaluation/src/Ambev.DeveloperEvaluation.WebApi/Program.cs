@@ -60,8 +60,11 @@ public class Program
 
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             builder.Services.AddScoped<IUserBusiness, UserBusiness>();
+            builder.Services.AddScoped<ICartBusiness, CartBusiness>();
+            builder.Services.AddScoped<IProductBusiness, ProductBusiness>();
             builder.Services.AddScoped<ICartRepository, CartRepository>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             try
             {
