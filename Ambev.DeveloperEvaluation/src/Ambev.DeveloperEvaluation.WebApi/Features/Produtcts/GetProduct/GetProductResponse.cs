@@ -1,21 +1,21 @@
 using Ambev.DeveloperEvaluation.Domain.Enums;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProduct;
 
 /// <summary>
-/// API response model for CreateUser operation
+/// API response model for GetUser operation
 /// </summary>
-public class CreateProductResponse
+public class GetProductResponse
 {
     /// <summary>
-    /// The unique identifier of the created user
+    /// The unique identifier of the user
     /// </summary>
     public Guid Id { get; set; }
 
     /// <summary>
     /// The user's full name
     /// </summary>
-    public string Username { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     /// <summary>
     /// The user's email address

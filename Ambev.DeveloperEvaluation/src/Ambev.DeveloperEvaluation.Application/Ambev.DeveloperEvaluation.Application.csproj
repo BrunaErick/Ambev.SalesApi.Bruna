@@ -9,9 +9,10 @@
     <ProjectReference Include="..\Ambev.DeveloperEvaluation.Domain\Ambev.DeveloperEvaluation.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup>    
     <PackageReference Include="AutoMapper" Version="13.0.1" />    
-    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="MediatR" Version="12.4.1" />    
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.13.9" />
     <PackageReference Include="OneOf" Version="3.0.271" />
   </ItemGroup>
 
@@ -19,9 +20,6 @@
     <Folder Include="Carts\CreateCart\" />
     <Folder Include="Carts\DeleteCart\" />
     <Folder Include="Carts\GetCart\" />
-    <Folder Include="Products\CreateProduct\" />
-    <Folder Include="Products\DeleteProduct\" />
-    <Folder Include="Products\GetProduct\" />
   </ItemGroup>
 
 </Project>

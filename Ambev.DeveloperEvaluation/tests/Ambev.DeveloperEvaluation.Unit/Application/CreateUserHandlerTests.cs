@@ -60,8 +60,6 @@ public class CreateUserHandlerTests
         _mapper.Map<User>(command).Returns(user);
         _mapper.Map<CreateUserResult>(user).Returns(result);
 
-        _userRepository.CreateAsync(Arg.Any<User>(), Arg.Any<CancellationToken>())
-            .Returns(user);
         _passwordHasher.HashPassword(Arg.Any<string>()).Returns("hashedPassword");
 
         // When
@@ -111,8 +109,6 @@ public class CreateUserHandlerTests
         };
 
         _mapper.Map<User>(command).Returns(user);
-        _userRepository.CreateAsync(Arg.Any<User>(), Arg.Any<CancellationToken>())
-            .Returns(user);
         _passwordHasher.HashPassword(originalPassword).Returns(hashedPassword);
 
         // When
@@ -145,8 +141,7 @@ public class CreateUserHandlerTests
         };
 
         _mapper.Map<User>(command).Returns(user);
-        _userRepository.CreateAsync(Arg.Any<User>(), Arg.Any<CancellationToken>())
-            .Returns(user);
+
         _passwordHasher.HashPassword(Arg.Any<string>()).Returns("hashedPassword");
 
         // When

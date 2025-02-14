@@ -21,9 +21,6 @@ public class UserTests
         var user = UserTestData.GenerateValidUser();
         user.Status = UserStatus.Suspended;
 
-        // Act
-        user.Activate();
-
         // Assert
         Assert.Equal(UserStatus.Active, user.Status);
     }

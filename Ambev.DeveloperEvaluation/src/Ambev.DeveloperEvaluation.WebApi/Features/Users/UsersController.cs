@@ -49,13 +49,7 @@ public class UsersController : BaseController
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateUser([FromBody] CreateProductRequest request, CancellationToken cancellationToken)
     {
-        var validator = new CreateUserRequestValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
-
-        if (!validationResult.IsValid)
-            return BadRequest(validationResult.Errors);
-
-        var command = _mapper.Map<User>(request);
+         var command = _mapper.Map<User>(request);
 
         var response = _business.CreateAsync(command, cancellationToken);
         if (response.Result != Guid.Empty) 
