@@ -8,7 +8,7 @@ using Ambev.DeveloperEvaluation.Common.Security;
 namespace Ambev.DeveloperEvaluation.Application.Carts.CreateCart;
 
 /// <summary>
-/// Handler for processing CreateUserCommand requests
+/// Handler for processing CreateCartCommand requests
 /// </summary>
 public class CreateCartHandler : IRequestHandler<CreateCartCommand, CreateCartResult>
 {
@@ -17,11 +17,11 @@ public class CreateCartHandler : IRequestHandler<CreateCartCommand, CreateCartRe
     private readonly IPasswordHasher _passwordHasher;
 
     /// <summary>
-    /// Initializes a new instance of CreateUserHandler
+    /// Initializes a new instance of CreateCartHandler
     /// </summary>
     /// <param name="userRepository">The user repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
-    /// <param name="validator">The validator for CreateUserCommand</param>
+    /// <param name="validator">The validator for CreateCartCommand</param>
     public CreateCartHandler(IUserRepository userRepository, IMapper mapper, IPasswordHasher passwordHasher)
     {
         _userRepository = userRepository;
@@ -30,9 +30,9 @@ public class CreateCartHandler : IRequestHandler<CreateCartCommand, CreateCartRe
     }
 
     /// <summary>
-    /// Handles the CreateUserCommand request
+    /// Handles the CreateCartCommand request
     /// </summary>
-    /// <param name="command">The CreateUser command</param>
+    /// <param name="command">The CreateCart command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The created user details</returns>
     public async Task<CreateCartResult> Handle(CreateCartCommand command, CancellationToken cancellationToken)

@@ -5,17 +5,17 @@ using FluentValidation;
 namespace Ambev.DeveloperEvaluation.Application.Carts.CreateCart;
 
 /// <summary>
-/// Validator for CreateUserCommand that defines validation rules for user creation command.
+/// Validator for CreatecartCommand that defines validation rules for cart creation command.
 /// </summary>
 public class CreateCartCommandValidator : AbstractValidator<CreateCartCommand>
 {
     /// <summary>
-    /// Initializes a new instance of the CreateUserCommandValidator with defined validation rules.
+    /// Initializes a new instance of the CreatecartCommandValidator with defined validation rules.
     /// </summary>
     /// <remarks>
     /// Validation rules include:
     /// - Email: Must be in valid format (using EmailValidator)
-    /// - Username: Required, must be between 3 and 50 characters
+    /// - cartname: Required, must be between 3 and 50 characters
     /// - Password: Must meet security requirements (using PasswordValidator)
     /// - Phone: Must match international format (+X XXXXXXXXXX)
     /// - Status: Cannot be set to Unknown
@@ -23,11 +23,9 @@ public class CreateCartCommandValidator : AbstractValidator<CreateCartCommand>
     /// </remarks>
     public CreateCartCommandValidator()
     {
-        RuleFor(user => user.Email).SetValidator(new EmailValidator());
-        RuleFor(user => user.Username).NotEmpty().Length(3, 50);
-        RuleFor(user => user.Password).SetValidator(new PasswordValidator());
-        RuleFor(user => user.Phone).Matches(@"^\+?[1-9]\d{1,14}$");
-        RuleFor(user => user.Status).NotEqual(UserStatus.Unknown);
-        RuleFor(user => user.Role).NotEqual(UserRole.None);
+        RuleFor(cart => cart.Email).SetValidator(new EmailValidator());
+        RuleFor(cart => cart.cartname).NotEmpty().Length(3, 50);
+        RuleFor(cart => cart.Password).SetValidator(new PasswordValidator());
+        RuleFor(cart => cart.Phone).Matches(@"^\+?[1-9]\d{1,14}$");
     }
 }

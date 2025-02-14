@@ -3,12 +3,12 @@ using AutoMapper;
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Carts.DeleteCart;
 
 /// <summary>
-/// Profile for mapping DeleteUser feature requests to commands
+/// Profile for mapping DeleteCart feature requests to commands
 /// </summary>
 public class DeleteCart : Profile
 {
     /// <summary>
-    /// Initializes the mappings for DeleteUser feature
+    /// Initializes the mappings for DeleteCart feature
     /// </summary>
     public DeleteCart()
     {

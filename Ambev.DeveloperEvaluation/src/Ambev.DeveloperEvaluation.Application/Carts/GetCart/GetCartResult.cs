@@ -3,7 +3,7 @@ using Ambev.DeveloperEvaluation.Domain.Enums;
 namespace Ambev.DeveloperEvaluation.Application.Carts.GetCart;
 
 /// <summary>
-/// Response model for GetUser operation
+/// Response model for GetCart operation
 /// </summary>
 public class GetCartResult
 {

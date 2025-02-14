@@ -5,17 +5,17 @@ using Ambev.DeveloperEvaluation.Domain.Repositories;
 namespace Ambev.DeveloperEvaluation.Application.Carts.DeleteCart;
 
 /// <summary>
-/// Handler for processing DeleteUserCommand requests
+/// Handler for processing DeleteCartCommand requests
 /// </summary>
 public class DeleteCartHandler : IRequestHandler<DeleteCartCommand, DeleteCartResponse>
 {
     private readonly ICartRepository _cartRepository;
 
     /// <summary>
-    /// Initializes a new instance of DeleteUserHandler
+    /// Initializes a new instance of DeleteCartHandler
     /// </summary>
     /// <param name="userRepository">The user repository</param>
-    /// <param name="validator">The validator for DeleteUserCommand</param>
+    /// <param name="validator">The validator for DeleteCartCommand</param>
     public DeleteCartHandler(
         ICartRepository cartRepository)
     {
@@ -23,9 +23,9 @@ public class DeleteCartHandler : IRequestHandler<DeleteCartCommand, DeleteCartRe
     }
 
     /// <summary>
-    /// Handles the DeleteUserCommand request
+    /// Handles the DeleteCartCommand request
     /// </summary>
-    /// <param name="request">The DeleteUser command</param>
+    /// <param name="request">The DeleteCart command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The result of the delete operation</returns>
     public async Task<DeleteCartResponse> Handle(DeleteCartCommand request, CancellationToken cancellationToken)
