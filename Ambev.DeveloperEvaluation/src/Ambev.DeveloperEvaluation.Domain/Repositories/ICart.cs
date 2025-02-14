@@ -13,7 +13,7 @@ public interface ICartRepository
     /// <param name="user">The user to create</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The created user</returns>
-    Task<Guid> CreateAsync(User user, CancellationToken cancellationToken = default);
+    Task<Guid> CreateAsync(Cart cart, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Retrieves a user by their unique identifier
