@@ -9,6 +9,7 @@ using Ambev.DeveloperEvaluation.Application.Users.GetUser;
 using Ambev.DeveloperEvaluation.Application.Users.DeleteUser;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Ambev.DeveloperEvaluation.Domain.Entities;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Users;
 
@@ -61,7 +62,7 @@ public class UsersController : BaseController
             });
         }        
         else
-            return Conflict(new ApiResponseWithData<CreateUserResponse>
+            return BadRequest(new ApiResponseWithData<CreateUserResponse>
             {
                 Success = false,
                 Message = "Error",
@@ -81,22 +82,22 @@ public class UsersController : BaseController
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetUser([FromRoute] Guid id, CancellationToken cancellationToken)
     {
-        var request = new GetUserRequest { Id = id };
-        var validator = new GetUserRequestValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        var response = _business.GetByIdAsync(id, cancellationToken);
 
-        if (!validationResult.IsValid)
-            return BadRequest(validationResult.Errors);
-
-        var command = _mapper.Map<GetUserCommand>(request.Id);
-        var response = await _mediator.Send(command, cancellationToken);
-
+        if(!string.IsNullOrEmpty(((User)response.Result).Username))
         return Ok(new ApiResponseWithData<GetUserResponse>
         {
             Success = true,
             Message = "User retrieved successfully",
             Data = _mapper.Map<GetUserResponse>(response)
         });
+        else
+            return NotFound(new ApiResponseWithData<GetUserResponse>
+            {
+                Success = false,
+                Message = "Not Found",
+                Data = _mapper.Map<GetUserResponse>(response)
+            });
     }
 
     /// <summary>
@@ -111,20 +112,20 @@ public class UsersController : BaseController
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteUser([FromRoute] Guid id, CancellationToken cancellationToken)
     {
-        var request = new DeleteUserRequest { Id = id };
-        var validator = new DeleteUserRequestValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        var response = _business.DeleteAsync(id, cancellationToken);
 
-        if (!validationResult.IsValid)
-            return BadRequest(validationResult.Errors);
-
-        var command = _mapper.Map<DeleteUserCommand>(request.Id);
-        await _mediator.Send(command, cancellationToken);
-
-        return Ok(new ApiResponse
-        {
-            Success = true,
-            Message = "User deleted successfully"
-        });
+        if(((Boolean)response.Result))
+            return Ok(new ApiResponse
+            {
+                Success = true,
+                Message = "User deleted successfully"
+            });
+        else
+             return BadRequest(new ApiResponseWithData<GetUserResponse>
+            {
+                Success = false,
+                Message = "Error",
+                Data = _mapper.Map<GetUserResponse>(response)
+            });
     }
 }

@@ -1,6 +1,8 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Entities;
+﻿using Ambev.DeveloperEvaluation.Common.Security;
+using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Azure.Core;
+using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -103,7 +105,40 @@ public class UserRepository : IUserRepository
     /// <returns>The user if found, null otherwise</returns>
     public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await _context.Users.FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
+        // return await _context.Users.FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
+        var response = new User();
+
+        var connectionstring = _appSettings.GetConnectionString("DefaultConnection");
+       
+        try
+        {
+            var sqlQuery = @" SELECT 
+            
+                [Username] 
+                ,[Password] 
+                ,[Phone] 
+                ,[Email] 
+                ,[Status]  
+                ,[Role]
+           FROM [AmbevDb].[dbo].[Users] WHERE  [Id] = @id";
+
+            using (var connection = new SqlConnection(connectionstring))
+            {
+                connection.Open();
+
+                // Usando Dapper para executar a consulta e mapear o resultado para um objeto User
+                response = connection.QuerySingleOrDefault<User>(sqlQuery, new { id });
+
+            }
+
+            return response;
+        }
+        catch (Exception ex)
+        {
+            //ira retornar o usuario vazio
+        }
+
+        return response;
     }
 
     /// <summary>
@@ -114,8 +149,42 @@ public class UserRepository : IUserRepository
     /// <returns>The user if found, null otherwise</returns>
     public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
-        return await _context.Users
-            .FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
+        //return await _context.Users
+        //    .FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
+        // return await _context.Users.FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
+        var response = new User();
+
+        var connectionstring = _appSettings.GetConnectionString("DefaultConnection");
+
+        try
+        {
+            var sqlQuery = @" SELECT 
+            
+                [Username] 
+                ,[Password] 
+                ,[Phone] 
+                ,[Email] 
+                ,[Status]  
+                ,[Role]
+           FROM [AmbevDb].[dbo].[Users] WHERE  [Email] = @email";
+
+            using (var connection = new SqlConnection(connectionstring))
+            {
+                connection.Open();
+
+                // Usando Dapper para executar a consulta e mapear o resultado para um objeto User
+                response = connection.QuerySingleOrDefault<User>(sqlQuery, new { email });
+
+            }
+
+            return response;
+        }
+        catch (Exception ex)
+        {
+            //ira retornar o usuario vazio
+        }
+
+        return response;
     }
 
     /// <summary>
@@ -126,12 +195,29 @@ public class UserRepository : IUserRepository
     /// <returns>True if the user was deleted, false if not found</returns>
     public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var user = await GetByIdAsync(id, cancellationToken);
-        if (user == null)
-            return false;
+        var connectionstring = _appSettings.GetConnectionString("DefaultConnection");
 
-        _context.Users.Remove(user);
-        await _context.SaveChangesAsync(cancellationToken);
-        return true;
+        //var user = await GetByIdAsync(id, cancellationToken);
+        //if (user == null)
+        //    return false;
+
+        //_context.Users.Remove(user);
+        //await _context.SaveChangesAsync(cancellationToken);
+        // return true;
+
+        var sqlQuery = @"
+        DELETE FROM [AmbevDb].[dbo].[Users]
+        WHERE [iD] = @id";
+
+        using (var connection = new SqlConnection(connectionstring))
+        {
+            connection.Open();
+
+            // Usando Dapper para executar a consulta de deleção
+            int rowsAffected = connection.Execute(sqlQuery, new { id });
+
+            // Verifica se a exclusão foi bem-sucedida (caso o número de linhas afetadas seja 1)
+            return rowsAffected > 0;
+        }
     }
 }
