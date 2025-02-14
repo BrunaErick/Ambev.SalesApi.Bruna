@@ -15,4 +15,13 @@
     <PackageReference Include="OneOf" Version="3.0.271" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Carts\CreateCart\" />
+    <Folder Include="Carts\DeleteCart\" />
+    <Folder Include="Carts\GetCart\" />
+    <Folder Include="Products\CreateProduct\" />
+    <Folder Include="Products\DeleteProduct\" />
+    <Folder Include="Products\GetProduct\" />
+  </ItemGroup>
+
 </Project>

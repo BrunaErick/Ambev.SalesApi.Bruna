@@ -1,7 +1,7 @@
 using AutoMapper;
-using Ambev.DeveloperEvaluation.Application.Users.CreateUser;
+using Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Users.CreateUser;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
 
 /// <summary>
 /// Profile for mapping between Application and API CreateUser responses
@@ -13,7 +13,7 @@ public class CreateProduct : Profile
     /// </summary>
     public CreateProduct()
     {
-        CreateMap<CreateProductRequest, CreateUserCommand>();
-        CreateMap<CreateUserResult, CreateProductResponse>();
+        CreateMap<CreateProductRequest, CreateProductCommand>();
+        CreateMap<CreateProductResult, CreateProductResponse>();
     }
 }
