@@ -6,7 +6,7 @@ using Ambev.DeveloperEvaluation.Domain.Repositories;
 namespace Ambev.DeveloperEvaluation.Application.Products.GetProduct;
 
 /// <summary>
-/// Handler for processing GetUserCommand requests
+/// Handler for processing GerProductCommand requests
 /// </summary>
 public class GetProductHandler : IRequestHandler<GetProductCommand, GetProductResult>
 {
@@ -14,11 +14,11 @@ public class GetProductHandler : IRequestHandler<GetProductCommand, GetProductRe
     private readonly IMapper _mapper;
 
     /// <summary>
-    /// Initializes a new instance of GetUserHandler
+    /// Initializes a new instance of GerProductHandler
     /// </summary>
     /// <param name="userRepository">The user repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
-    /// <param name="validator">The validator for GetUserCommand</param>
+    /// <param name="validator">The validator for GerProductCommand</param>
     public GetProductHandler(
         IUserRepository userRepository,
         IMapper mapper)
@@ -28,9 +28,9 @@ public class GetProductHandler : IRequestHandler<GetProductCommand, GetProductRe
     }
 
     /// <summary>
-    /// Handles the GetUserCommand request
+    /// Handles the GerProductCommand request
     /// </summary>
-    /// <param name="request">The GetUser command</param>
+    /// <param name="request">The GerProduct command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The user details if found</returns>
     public async Task<GetProductResult> Handle(GetProductCommand request, CancellationToken cancellationToken)

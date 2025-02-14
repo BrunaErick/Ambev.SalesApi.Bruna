@@ -3,12 +3,12 @@ using FluentValidation;
 namespace Ambev.DeveloperEvaluation.Application.Carts.GetCart;
 
 /// <summary>
-/// Validator for GetUserCommand
+/// Validator for GetCartCommand
 /// </summary>
 public class GetCartValidator : AbstractValidator<GetCartCommand>
 {
     /// <summary>
-    /// Initializes validation rules for GetUserCommand
+    /// Initializes validation rules for GetCartCommand
     /// </summary>
     public GetCartValidator()
     {

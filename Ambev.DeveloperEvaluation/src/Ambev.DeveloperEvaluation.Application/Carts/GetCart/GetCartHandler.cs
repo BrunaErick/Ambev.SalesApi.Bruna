@@ -6,7 +6,7 @@ using Ambev.DeveloperEvaluation.Domain.Repositories;
 namespace Ambev.DeveloperEvaluation.Application.Carts.GetCart;
 
 /// <summary>
-/// Handler for processing GetUserCommand requests
+/// Handler for processing GetcartCommand requests
 /// </summary>
 public class GetCartHandler : IRequestHandler<GetCartCommand, GetCartResult>
 {
@@ -14,11 +14,11 @@ public class GetCartHandler : IRequestHandler<GetCartCommand, GetCartResult>
     private readonly IMapper _mapper;
 
     /// <summary>
-    /// Initializes a new instance of GetUserHandler
+    /// Initializes a new instance of GetcartHandler
     /// </summary>
-    /// <param name="userRepository">The user repository</param>
+    /// <param name="cartRepository">The cart repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
-    /// <param name="validator">The validator for GetUserCommand</param>
+    /// <param name="validator">The validator for GetcartCommand</param>
     public GetCartHandler(
         ICartRepository cartRepository,
         IMapper mapper)
@@ -28,11 +28,11 @@ public class GetCartHandler : IRequestHandler<GetCartCommand, GetCartResult>
     }
 
     /// <summary>
-    /// Handles the GetUserCommand request
+    /// Handles the GetcartCommand request
     /// </summary>
-    /// <param name="request">The GetUser command</param>
+    /// <param name="request">The Getcart command</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>The user details if found</returns>
+    /// <returns>The cart details if found</returns>
     public async Task<GetCartResult> Handle(GetCartCommand request, CancellationToken cancellationToken)
     {
         var validator = new GetCartValidator();
@@ -41,10 +41,10 @@ public class GetCartHandler : IRequestHandler<GetCartCommand, GetCartResult>
         if (!validationResult.IsValid)
             throw new ValidationException(validationResult.Errors);
 
-        var user = await _cartRepository.GetByIdAsync(request.Id, cancellationToken);
-        if (user == null)
-            throw new KeyNotFoundException($"User with ID {request.Id} not found");
+        var cart = await _cartRepository.GetByIdAsync(request.Id, cancellationToken);
+        if (cart == null)
+            throw new KeyNotFoundException($"cart with ID {request.Id} not found");
 
-        return _mapper.Map<GetCartResult>(user);
+        return _mapper.Map<GetCartResult>(cart);
     }
 }

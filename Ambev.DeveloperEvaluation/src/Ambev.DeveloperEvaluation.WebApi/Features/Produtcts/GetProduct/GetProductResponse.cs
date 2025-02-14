@@ -3,7 +3,7 @@ using Ambev.DeveloperEvaluation.Domain.Enums;
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProduct;
 
 /// <summary>
-/// API response model for GetUser operation
+/// API response model for GerProduct operation
 /// </summary>
 public class GetProductResponse
 {

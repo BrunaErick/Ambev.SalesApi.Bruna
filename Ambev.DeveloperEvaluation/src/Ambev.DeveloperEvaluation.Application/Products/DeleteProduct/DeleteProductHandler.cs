@@ -5,17 +5,17 @@ using Ambev.DeveloperEvaluation.Domain.Repositories;
 namespace Ambev.DeveloperEvaluation.Application.Products.DeleteProduct;
 
 /// <summary>
-/// Handler for processing DeleteUserCommand requests
+/// Handler for processing DeleteProductCommand requests
 /// </summary>
 public class DeleteProductHandler : IRequestHandler<DeleteProductCommand, DeleteProductResponse>
 {
     private readonly IProductRepository _productRepository;
 
     /// <summary>
-    /// Initializes a new instance of DeleteUserHandler
+    /// Initializes a new instance of DeleteProductHandler
     /// </summary>
     /// <param name="userRepository">The user repository</param>
-    /// <param name="validator">The validator for DeleteUserCommand</param>
+    /// <param name="validator">The validator for DeleteProductCommand</param>
     public DeleteProductHandler(
         IProductRepository userRepository)
     {
@@ -23,9 +23,9 @@ public class DeleteProductHandler : IRequestHandler<DeleteProductCommand, Delete
     }
 
     /// <summary>
-    /// Handles the DeleteUserCommand request
+    /// Handles the DeleteProductCommand request
     /// </summary>
-    /// <param name="request">The DeleteUser command</param>
+    /// <param name="request">The DeleteProduct command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The result of the delete operation</returns>
     public async Task<DeleteProductResponse> Handle(DeleteProductCommand request, CancellationToken cancellationToken)

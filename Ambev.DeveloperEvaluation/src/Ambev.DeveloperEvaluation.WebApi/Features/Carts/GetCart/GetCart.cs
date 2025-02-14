@@ -3,12 +3,12 @@ using AutoMapper;
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Carts.GetCart;
 
 /// <summary>
-/// Profile for mapping GetUser feature requests to commands
+/// Profile for mapping GetCart feature requests to commands
 /// </summary>
 public class GetCart : Profile
 {
     /// <summary>
-    /// Initializes the mappings for GetUser feature
+    /// Initializes the mappings for GetCart feature
     /// </summary>
     public GetCart()
     {

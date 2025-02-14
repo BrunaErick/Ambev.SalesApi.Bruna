@@ -4,12 +4,12 @@ using Ambev.DeveloperEvaluation.Domain.Entities;
 namespace Ambev.DeveloperEvaluation.Application.Carts.GetCart;
 
 /// <summary>
-/// Profile for mapping between User entity and GetUserResponse
+/// Profile for mapping between Cart entity and GetCartResponse
 /// </summary>
 public class GetCart : Profile
 {
     /// <summary>
-    /// Initializes the mappings for GetUser operation
+    /// Initializes the mappings for GetCart operation
     /// </summary>
     public GetCart()
     {

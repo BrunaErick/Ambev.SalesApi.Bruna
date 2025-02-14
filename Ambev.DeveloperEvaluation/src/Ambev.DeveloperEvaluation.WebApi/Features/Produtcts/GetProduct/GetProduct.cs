@@ -3,12 +3,12 @@ using AutoMapper;
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProduct;
 
 /// <summary>
-/// Profile for mapping GetUser feature requests to commands
+/// Profile for mapping GerProduct feature requests to commands
 /// </summary>
 public class GetProduct : Profile
 {
     /// <summary>
-    /// Initializes the mappings for GetUser feature
+    /// Initializes the mappings for GerProduct feature
     /// </summary>
     public GetProduct()
     {

@@ -3,12 +3,12 @@ using FluentValidation;
 namespace Ambev.DeveloperEvaluation.Application.Products.GetProduct;
 
 /// <summary>
-/// Validator for GetUserCommand
+/// Validator for GerProductCommand
 /// </summary>
 public class GetProductValidator : AbstractValidator<GetProductCommand>
 {
     /// <summary>
-    /// Initializes validation rules for GetUserCommand
+    /// Initializes validation rules for GerProductCommand
     /// </summary>
     public GetProductValidator()
     {

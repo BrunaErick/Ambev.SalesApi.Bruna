@@ -3,12 +3,12 @@ using FluentValidation;
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Carts.DeleteCart;
 
 /// <summary>
-/// Validator for DeleteUserRequest
+/// Validator for DeleteCartRequest
 /// </summary>
 public class DeleteCartValidator : AbstractValidator<DeleteCartRequest>
 {
     /// <summary>
-    /// Initializes validation rules for DeleteUserRequest
+    /// Initializes validation rules for DeleteCartRequest
     /// </summary>
     public DeleteCartValidator()
     {

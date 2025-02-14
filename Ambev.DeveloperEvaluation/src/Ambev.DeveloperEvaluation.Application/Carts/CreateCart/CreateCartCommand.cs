@@ -1,55 +1,45 @@
-﻿using Ambev.DeveloperEvaluation.Application.Users.CreateUser;
-using Ambev.DeveloperEvaluation.Common.Validation;
+﻿using Ambev.DeveloperEvaluation.Common.Validation;
 using Ambev.DeveloperEvaluation.Domain.Enums;
 using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Carts.CreateCart;
 
 /// <summary>
-/// Command for creating a new user.
+/// Command for creating a new cart.
 /// </summary>
 /// <remarks>
-/// This command is used to capture the required data for creating a user, 
-/// including username, password, phone number, email, status, and role. 
+/// This command is used to capture the required data for creating a cart, 
+/// including cartname, password, phone number, email, status, and role. 
 /// It implements <see cref="IRequest{TResponse}"/> to initiate the request 
-/// that returns a <see cref="CreateUserResult"/>.
+/// that returns a <see cref="CreatecartResult"/>.
 /// 
 /// The data provided in this command is validated using the 
-/// <see cref="CreateUserCommandValidator"/> which extends 
+/// <see cref="CreatecartCommandValidator"/> which extends 
 /// <see cref="AbstractValidator{T}"/> to ensure that the fields are correctly 
 /// populated and follow the required rules.
 /// </remarks>
 public class CreateCartCommand : IRequest<CreateCartResult>
 {
     /// <summary>
-    /// Gets or sets the username of the user to be created.
+    /// Gets or sets the cartname of the cart to be created.
     /// </summary>
-    public string Username { get; set; } = string.Empty;
+    public string cartname { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the password for the user.
+    /// Gets or sets the password for the cart.
     /// </summary>
     public string Password { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the phone number for the user.
+    /// Gets or sets the phone number for the cart.
     /// </summary>
     public string Phone { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the email address for the user.
+    /// Gets or sets the email address for the cart.
     /// </summary>
     public string Email { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Gets or sets the status of the user.
-    /// </summary>
-    public UserStatus Status { get; set; }
-
-    /// <summary>
-    /// Gets or sets the role of the user.
-    /// </summary>
-    public UserRole Role { get; set; }
+    
 
     public ValidationResultDetail Validate()
     {
