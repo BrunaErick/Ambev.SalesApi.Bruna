@@ -7,11 +7,11 @@ using Ambev.DeveloperEvaluation.Application.Auth.AuthenticateUser;
 using Ambev.DeveloperEvaluation.Application.Users.GetUser;
 using Ambev.DeveloperEvaluation.WebApi.Features.Users.GetUser;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Carts
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class SalesController : BaseController
+    public class CartsController : BaseController
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
         /// </summary>
         /// <param name="mediator">The mediator instance</param>
         /// <param name="mapper">The AutoMapper instance</param>
-        public SalesController(IMediator mediator, IMapper mapper)
+        public CartsController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
             _mapper = mapper;
