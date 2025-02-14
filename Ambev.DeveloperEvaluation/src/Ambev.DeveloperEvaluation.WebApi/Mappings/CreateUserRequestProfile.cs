@@ -9,10 +9,10 @@ public class CreateUserRequestProfile : Profile
 {
     public CreateUserRequestProfile()
     {
-        CreateMap<CreateProductRequest, CreateUserCommand>();
-        CreateMap<CreateProductRequest, User>();
-        CreateMap<User, CreateProductRequest>();
-        CreateMap<CreateProductResponse, User>();
-        CreateMap<User, CreateProductResponse>();
+        CreateMap<CreateUserRequest, CreateUserCommand>();
+        CreateMap<CreateUserRequest, User>();
+        CreateMap<User, CreateUserRequest>();
+        CreateMap<CreateUserResponse, User>();
+        CreateMap<User, CreateUserResponse>();
     }
 }
