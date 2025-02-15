@@ -12,7 +12,7 @@ public class GetProduct : Profile
     /// </summary>
     public GetProduct()
     {
-        CreateMap<Guid, Application.Products.GetProduct.GetProductCommand>()
+        CreateMap<int, Application.Products.GetProduct.GetProductCommand>()
             .ConstructUsing(id => new Application.Products.GetProduct.GetProductCommand(id));
     }
 }

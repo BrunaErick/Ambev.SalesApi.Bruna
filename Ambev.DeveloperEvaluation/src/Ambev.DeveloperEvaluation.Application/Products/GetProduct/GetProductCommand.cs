@@ -10,13 +10,13 @@ public record GetProductCommand : IRequest<GetProductResult>
     /// <summary>
     /// The unique identifier of the GerProduct to retrieve
     /// </summary>
-    public Guid Id { get; }
+    public int Id { get; }
 
     /// <summary>
     /// Initializes a new instance of GetGerProductCommand
     /// </summary>
     /// <param name="id">The ID of the GerProduct to retrieve</param>
-    public GetProductCommand(Guid id)
+    public GetProductCommand(int id)
     {
         Id = id;
     }

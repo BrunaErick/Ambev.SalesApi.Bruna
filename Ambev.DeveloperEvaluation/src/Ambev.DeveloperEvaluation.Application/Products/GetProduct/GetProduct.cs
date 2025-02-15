@@ -13,6 +13,6 @@ public class GetProduct : Profile
     /// </summary>
     public GetProduct()
     {
-        CreateMap<User, GetProductResult>();
+        CreateMap<Product, GetProductResult>();
     }
 }

@@ -23,8 +23,6 @@ public class CreateProductValidator : AbstractValidator<CreateProductRequest>
     /// </remarks>
     public CreateProductValidator()
     {
-        RuleFor(user => user.Email).SetValidator(new EmailValidator());
-        RuleFor(user => user.Password).SetValidator(new PasswordValidator());
-        RuleFor(user => user.Phone).Matches(@"^\+?[1-9]\d{1,14}$");
+
     }
 }

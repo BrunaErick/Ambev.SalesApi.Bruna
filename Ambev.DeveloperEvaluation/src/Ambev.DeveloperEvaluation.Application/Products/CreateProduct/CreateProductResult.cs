@@ -13,5 +13,5 @@ public class CreateProductResult
     /// Gets or sets the unique identifier of the newly created product.
     /// </summary>
     /// <value>A GUID that uniquely identifies the created product in the system.</value>
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 }
