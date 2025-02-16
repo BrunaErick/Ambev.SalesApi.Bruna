@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\img\logoAmbev.jpg" />
+    <Folder Include="wwwroot\NovaPasta\" />
   </ItemGroup>
 
 </Project>
