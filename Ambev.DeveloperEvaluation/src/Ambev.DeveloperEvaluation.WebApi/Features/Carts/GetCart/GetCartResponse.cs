@@ -8,23 +8,17 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Carts.GetCart;
 public class GetCartResponse
 {
     /// <summary>
-    /// The unique identifier of the cart
-    /// </summary>
-    public Guid Id { get; set; }
+    /// Gets the unique identifier of the cart
+    public int Id { get; set; }
 
     /// <summary>
-    /// The cart's full name
+    /// Gets the cart's userId
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public string UserId { get; set; }
 
     /// <summary>
-    /// The cart's email address
+    /// Gets the Date
     /// </summary>
-    public string Email { get; set; } = string.Empty;
-
-    /// <summary>
-    /// The cart's phone number
-    /// </summary>
-    public string Phone { get; set; } = string.Empty;
+    public DateTime Date { get; set; }
 
 }

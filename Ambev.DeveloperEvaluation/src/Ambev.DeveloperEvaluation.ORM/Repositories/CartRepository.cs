@@ -34,10 +34,10 @@ public class CartRepository : ICartRepository
     /// <param name="Cart">The Cart to create</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The created Cart</returns>
-    public async Task<Guid> CreateAsync(Cart Cart, CancellationToken cancellationToken = default)
+    public async Task<int> CreateAsync(Cart Cart, CancellationToken cancellationToken = default)
     {
         var connectionstring = _appSettings.GetConnectionString("DefaultConnection");
-        var id = new Guid();
+        var id = 0;
         try
         {
             var sqlQuery = @" Insert into  [AmbevDb].[dbo].[Carts] 
@@ -64,11 +64,9 @@ public class CartRepository : ICartRepository
 
                     using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                     {
-                        command.Parameters.AddWithValue("@Password", Cart.Password);
-                        command.Parameters.AddWithValue("@Phone", Cart.Phone);
-                        command.Parameters.AddWithValue("@Role", Cart.Role);
+                      //  command.Parameters.AddWithValue("@Id", Cart.Id);
 
-                        id = (Guid)command.ExecuteScalar();                        
+                        id = (int)command.ExecuteScalar();                        
                     }
                 }
 
@@ -88,7 +86,7 @@ public class CartRepository : ICartRepository
         }
         catch (Exception ex)
         {
-            return Guid.Empty;
+            return 0;
         }
     }
 
@@ -98,7 +96,7 @@ public class CartRepository : ICartRepository
     /// <param name="id">The unique identifier of the Cart</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The Cart if found, null otherwise</returns>
-    public async Task<Cart?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<Cart?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
     {
         return await _context.Carts.FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
     }
@@ -110,7 +108,7 @@ public class CartRepository : ICartRepository
     /// <param name="id">The unique identifier of the Cart to delete</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>True if the Cart was deleted, false if not found</returns>
-    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default)
     {
         var Cart = await GetByIdAsync(id, cancellationToken);
         if (Cart == null)

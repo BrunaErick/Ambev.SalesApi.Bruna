@@ -37,6 +37,18 @@ public class ProductRepository : IProductRepository
     /// <returns>The created Product</returns>
     public async Task<int> CreateAsync(Product Product, CancellationToken cancellationToken = default)
     {
+        /*
+              Entendo que seguindo os padrões do Entity seria
+
+            _context.Products.Add(Product);
+            _context.SaveChanges();
+
+            Porém o Migrator não reconheceu meu usuário do banco local, 
+            impedindo minha conexão, então fiz do modo tradicional abaixo
+            para entregar a tempo o teste funcionando
+
+             */
+
         var connectionstring = _appSettings.GetConnectionString("DefaultConnection");
         var id = 0;
         try
@@ -77,18 +89,6 @@ public class ProductRepository : IProductRepository
                     id = (int)command.ExecuteScalar();                        
                     }
                 }
-
-            /*
-              Entendo que seguindo os padrões do Entity seria
-
-            _context.Products.Add(Product);
-            _context.SaveChanges();
-
-            Porém o Migrator não reconheceu meu usuário do banco local, 
-            impedindo minha conexão, então fiz do modo tradicional acima
-            para entregar a tempo o teste
-
-             */
 
             return id;
         }

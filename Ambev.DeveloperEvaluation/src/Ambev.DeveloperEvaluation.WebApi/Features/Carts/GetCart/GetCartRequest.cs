@@ -8,5 +8,5 @@ public class GetCartRequest
     /// <summary>
     /// The unique identifier of the cart to retrieve
     /// </summary>
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 }

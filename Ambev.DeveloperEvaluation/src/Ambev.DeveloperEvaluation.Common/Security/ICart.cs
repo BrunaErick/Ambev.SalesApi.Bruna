@@ -6,21 +6,17 @@
     public interface ICart
     {
         /// <summary>
-        /// Obtém o identificador único do usuário.
-        /// </summary>
-        /// <returns>O ID do usuário como uma string.</returns>
-        public string Id { get; }
+        /// Gets the unique identifier of the cart
+        public int Id { get; set; }
 
         /// <summary>
-        /// Obtém o nome de usuário.
+        /// Gets the cart's userId
         /// </summary>
-        /// <returns>O nome de usuário.</returns>
-        public string Cartname { get; }
+        public string UserId { get; set; }
 
         /// <summary>
-        /// Obtém o papel/função do usuário no sistema.
+        /// Gets the Date
         /// </summary>
-        /// <returns>O papel do usuário como uma string.</returns>
-        public string Role { get; }
+        public DateTime Date { get; set; }
     }
 }

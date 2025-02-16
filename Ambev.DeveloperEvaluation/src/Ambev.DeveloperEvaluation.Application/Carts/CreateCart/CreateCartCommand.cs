@@ -1,4 +1,5 @@
-﻿using Ambev.DeveloperEvaluation.Common.Validation;
+﻿using Ambev.DeveloperEvaluation.Common.Security;
+using Ambev.DeveloperEvaluation.Common.Validation;
 using Ambev.DeveloperEvaluation.Domain.Enums;
 using MediatR;
 
@@ -21,25 +22,19 @@ namespace Ambev.DeveloperEvaluation.Application.Carts.CreateCart;
 public class CreateCartCommand : IRequest<CreateCartResult>
 {
     /// <summary>
-    /// Gets or sets the cartname of the cart to be created.
-    /// </summary>
-    public string cartname { get; set; } = string.Empty;
+    /// Gets the unique identifier of the cart
+    public int Id { get; set; }
 
     /// <summary>
-    /// Gets or sets the password for the cart.
+    /// Gets the cart's userId
     /// </summary>
-    public string Password { get; set; } = string.Empty;
+    public string UserId { get; set; }
 
     /// <summary>
-    /// Gets or sets the phone number for the cart.
+    /// Gets the Date
     /// </summary>
-    public string Phone { get; set; } = string.Empty;
+    public DateTime Date { get; set; }
 
-    /// <summary>
-    /// Gets or sets the email address for the cart.
-    /// </summary>
-    public string Email { get; set; } = string.Empty;
-    
 
     public ValidationResultDetail Validate()
     {

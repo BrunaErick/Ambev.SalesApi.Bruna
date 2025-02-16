@@ -10,13 +10,13 @@ public record GetCartCommand : IRequest<GetCartResult>
     /// <summary>
     /// The unique identifier of the cart to retrieve
     /// </summary>
-    public Guid Id { get; }
+    public int Id { get; }
 
     /// <summary>
     /// Initializes a new instance of GetcartCommand
     /// </summary>
     /// <param name="id">The ID of the cart to retrieve</param>
-    public GetCartCommand(Guid id)
+    public GetCartCommand(int id)
     {
         Id = id;
     }
