@@ -5,7 +5,7 @@ using FluentValidation;
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
 
 /// <summary>
-/// Validator for CreateProductRequest that defines validation rules for user creation.
+/// Validator for CreateProductRequest that defines validation rules for product creation.
 /// </summary>
 public class CreateProductValidator : AbstractValidator<CreateProductRequest>
 {
@@ -14,12 +14,6 @@ public class CreateProductValidator : AbstractValidator<CreateProductRequest>
     /// </summary>
     /// <remarks>
     /// Validation rules include:
-    /// - Email: Must be valid format (using EmailValidator)
-    /// - Username: Required, length between 3 and 50 characters
-    /// - Password: Must meet security requirements (using PasswordValidator)
-    /// - Phone: Must match international format (+X XXXXXXXXXX)
-    /// - Status: Cannot be Unknown
-    /// - Role: Cannot be None
     /// </remarks>
     public CreateProductValidator()
     {

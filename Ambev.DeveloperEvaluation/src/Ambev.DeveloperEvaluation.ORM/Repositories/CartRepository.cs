@@ -66,8 +66,6 @@ public class CartRepository : ICartRepository
                     {
                         command.Parameters.AddWithValue("@Password", Cart.Password);
                         command.Parameters.AddWithValue("@Phone", Cart.Phone);
-                        command.Parameters.AddWithValue("@Email", Cart.Email);
-                        command.Parameters.AddWithValue("@Status", Cart.Status);
                         command.Parameters.AddWithValue("@Role", Cart.Role);
 
                         id = (Guid)command.ExecuteScalar();                        
@@ -105,17 +103,6 @@ public class CartRepository : ICartRepository
         return await _context.Carts.FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
     }
 
-    /// <summary>
-    /// Retrieves a Cart by their email address
-    /// </summary>
-    /// <param name="email">The email address to search for</param>
-    /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>The Cart if found, null otherwise</returns>
-    public async Task<Cart?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
-    {
-        return await _context.Carts
-            .FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
-    }
 
     /// <summary>
     /// Deletes a Cart from the database

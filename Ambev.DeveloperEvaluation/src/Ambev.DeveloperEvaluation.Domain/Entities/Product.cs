@@ -8,59 +8,48 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities;
 
 
 /// <summary>
-/// Represents a user in the system with authentication and profile information.
-/// This entity follows domain-driven design principles and includes business rules validation.
+/// Represents a product in the system
 /// </summary>
 public class Product : BaseEntity, IProduct
 {
 
     /// <summary>
-    /// Gets the user's full name.
-    /// Must not be null or empty and should contain both first and last names.
+    /// Gets the product's full Id.
     /// </summary>
     public int Id { get; set; }
 
     /// <summary>
-    /// Gets the user's full name.
-    /// Must not be null or empty and should contain both first and last names.
+    /// Gets the product's full Title.
     /// </summary>
     public string Title { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the user's email address.
-    /// Must be a valid email format and is used as a unique identifier for authentication.
+    /// Gets the product's Price
     /// </summary>
     public Decimal Price { get; set; }
 
     /// <summary>
-    /// Gets the user's phone number.
-    /// Must be a valid phone number format following the pattern (XX) XXXXX-XXXX.
+    /// Gets the product's Description
     /// </summary>
     public string Description { get; set; } = string.Empty ;
 
     /// <summary>
-    /// Gets the hashed password for authentication.
-    /// Password must meet security requirements: minimum 8 characters, at least one uppercase letter,
-    /// one lowercase letter, one number, and one special character.
+    /// Gets the Category
     /// </summary>
     public string Category { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the hashed password for authentication.
-    /// Password must meet security requirements: minimum 8 characters, at least one uppercase letter,
-    /// one lowercase letter, one number, and one special character.
+    /// Gets the Image
     /// </summary>
     public string Image { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the user's role in the system.
-    /// Determines the user's permissions and access levels.
+    /// Gets the product's RatingRate
     /// </summary>
     public Decimal RatingRate { get;     set; }
 
     /// <summary>
-    /// Gets the user's current status.
-    /// Indicates whether the user is active, inactive, or blocked in the system.
+    /// Gets the product's RatingCount
     /// </summary>
     public int RatingCount { get; set; }
 

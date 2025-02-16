@@ -19,7 +19,7 @@ public class CreateProductHandler
     /// <summary>
     /// Initializes a new instance of CreateProductHandler
     /// </summary>
-    /// <param name="userRepository">The user repository</param>
+    /// <param name="f">The product repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
     /// <param name="validator">The validator for CreateProductCommand</param>
     public CreateProductHandler(IProductRepository productRepository, IMapper mapper, IPasswordHasher passwordHasher)

@@ -24,14 +24,6 @@ public interface ICartRepository
     Task<Cart?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Retrieves a Cart by their email address
-    /// </summary>
-    /// <param name="email">The email address to search for</param>
-    /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>The Cart if found, null otherwise</returns>
-    Task<Cart?> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
-
-    /// <summary>
     /// Deletes a Cart from the repository
     /// </summary>
     /// <param name="id">The unique identifier of the Cart to delete</param>
