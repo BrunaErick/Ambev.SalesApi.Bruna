@@ -8,23 +8,43 @@ namespace Ambev.DeveloperEvaluation.Application.Products.GetProduct;
 public class GetProductResult
 {
     /// <summary>
-    /// The unique identifier of the product
+    /// Gets the product's full Id.
     /// </summary>
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     /// <summary>
-    /// The product's full name
+    /// Gets the product's full Title.
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
 
     /// <summary>
-    /// The product's email address
+    /// Gets the product's Price
     /// </summary>
-    public string Email { get; set; } = string.Empty;
+    public Decimal Price { get; set; }
 
     /// <summary>
-    /// The product's phone number
+    /// Gets the product's Description
     /// </summary>
-    public string Phone { get; set; } = string.Empty;   
+    public string Description { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the Category
+    /// </summary>
+    public string Category { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the Image
+    /// </summary>
+    public string Image { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the product's RatingRate
+    /// </summary>
+    public Decimal RatingRate { get; set; }
+
+    /// <summary>
+    /// Gets the product's RatingCount.
+    /// </summary>
+    public int RatingCount { get; set; }
 
 }

@@ -1,7 +1,7 @@
 ﻿namespace Ambev.DeveloperEvaluation.Common.Security
 {
     /// <summary>
-    /// Define o contrato para representação de um usuário no sistema.
+    /// Define o contrato para representação de um carrinho no sistema.
     /// </summary>
     public interface ICart
     {
@@ -15,7 +15,7 @@
         /// Obtém o nome de usuário.
         /// </summary>
         /// <returns>O nome de usuário.</returns>
-        public string Username { get; }
+        public string Cartname { get; }
 
         /// <summary>
         /// Obtém o papel/função do usuário no sistema.

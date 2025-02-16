@@ -14,12 +14,12 @@ public class DeleteProductHandler : IRequestHandler<DeleteProductCommand, Delete
     /// <summary>
     /// Initializes a new instance of DeleteProductHandler
     /// </summary>
-    /// <param name="userRepository">The user repository</param>
+    /// <param name="productRepository">The product repository</param>
     /// <param name="validator">The validator for DeleteProductCommand</param>
     public DeleteProductHandler(
-        IProductRepository userRepository)
+        IProductRepository productRepository)
     {
-        _productRepository = userRepository;
+        _productRepository = productRepository;
     }
 
     /// <summary>

@@ -44,17 +44,6 @@ namespace Ambev.DeveloperEvaluation.Business
         }
 
         /// <summary>
-        /// Retrieves a Cart by their email address
-        /// </summary>
-        /// <param name="email">The email address to search for</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>The Cart if found, null otherwise</returns>
-        public async Task<Cart?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
-        {
-            return await _repo.GetByEmailAsync(email, cancellationToken);
-        }
-
-        /// <summary>
         /// Deletes a Cart from the database
         /// </summary>
         /// <param name="id">The unique identifier of the Cart to delete</param>

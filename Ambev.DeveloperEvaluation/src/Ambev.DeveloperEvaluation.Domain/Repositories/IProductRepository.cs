@@ -13,7 +13,7 @@ public interface IProductRepository
     /// <param name="Product">The Product to create</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The created Product</returns>
-    Task<Guid> CreateAsync(Product Product, CancellationToken cancellationToken = default);
+    Task<int> CreateAsync(Product Product, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Retrieves a Product by their unique identifier
@@ -21,15 +21,7 @@ public interface IProductRepository
     /// <param name="id">The unique identifier of the Product</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The Product if found, null otherwise</returns>
-    Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Retrieves a Product by their email address
-    /// </summary>
-    /// <param name="email">The email address to search for</param>
-    /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>The Product if found, null otherwise</returns>
-    Task<Product?> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
+    Task<Product?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Deletes a Product from the repository
@@ -37,5 +29,5 @@ public interface IProductRepository
     /// <param name="id">The unique identifier of the Product to delete</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>True if the Product was deleted, false if not found</returns>
-    Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default);
 }

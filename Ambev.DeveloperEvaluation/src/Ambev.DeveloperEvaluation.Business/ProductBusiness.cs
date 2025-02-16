@@ -27,7 +27,7 @@ namespace Ambev.DeveloperEvaluation.Business
         /// <param name="Product">The Product to create</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The created Product</returns>
-        public async Task<Guid> CreateAsync(Product Product, CancellationToken cancellationToken = default)
+        public async Task<int> CreateAsync(Product Product, CancellationToken cancellationToken = default)
         {
            return  await _repo.CreateAsync(Product, cancellationToken);
         }
@@ -38,20 +38,9 @@ namespace Ambev.DeveloperEvaluation.Business
         /// <param name="id">The unique identifier of the Product</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The Product if found, null otherwise</returns>
-        public async Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<Product?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
         {
             return await _repo.GetByIdAsync(id, cancellationToken);
-        }
-
-        /// <summary>
-        /// Retrieves a Product by their email address
-        /// </summary>
-        /// <param name="email">The email address to search for</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>The Product if found, null otherwise</returns>
-        public async Task<Product?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
-        {
-            return await _repo.GetByEmailAsync(email, cancellationToken);
         }
 
         /// <summary>
@@ -60,7 +49,7 @@ namespace Ambev.DeveloperEvaluation.Business
         /// <param name="id">The unique identifier of the Product to delete</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>True if the Product was deleted, false if not found</returns>
-        public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default)
         {
             return await _repo.DeleteAsync(id, cancellationToken);
         }

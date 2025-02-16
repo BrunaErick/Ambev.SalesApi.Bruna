@@ -8,23 +8,38 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
 public class CreateProductRequest
 {
     /// <summary>
-    /// Gets or sets the productname. Must be unique and contain only valid characters.
+    /// Gets the product's full Title.
     /// </summary>
-    public string productname { get; set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the password. Must meet security requirements.
+    /// Gets the product's Price address.
     /// </summary>
-    public string Password { get; set; } = string.Empty;
+    public Decimal Price { get; set; }
 
     /// <summary>
-    /// Gets or sets the phone number in format (XX) XXXXX-XXXX.
+    /// Gets the product's Description
     /// </summary>
-    public string Phone { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the email address. Must be a valid email format.
+    /// Gets the Category
     /// </summary>
-    public string Email { get; set; } = string.Empty;
+    public string Category { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the Image
+    /// </summary>
+    public string Image { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the product's RatingRate
+    /// </summary>
+    public Decimal RatingRate { get; set; }
+
+    /// <summary>
+    /// Gets the product's RatingCountRatingCount
+    /// </summary>
+    public int RatingCount { get; set; }
 
 }

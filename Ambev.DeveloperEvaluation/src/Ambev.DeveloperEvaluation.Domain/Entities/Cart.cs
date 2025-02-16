@@ -8,25 +8,24 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities;
 
 
 /// <summary>
-/// Represents a user in the system with authentication and profile information.
+/// Represents a cart in the system with authentication and profile information.
 /// This entity follows domain-driven design principles and includes business rules validation.
 /// </summary>
 public class Cart : BaseEntity, ICart
 {
     /// <summary>
-    /// Gets the user's full name.
+    /// Gets the cart's full name.
     /// Must not be null or empty and should contain both first and last names.
     /// </summary>
-    public string Username { get; set; } = string.Empty;
+    public string Cartname { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the user's email address.
-    /// Must be a valid email format and is used as a unique identifier for authentication.
+    /// Gets the cart's role.
     /// </summary>
-    public string Email { get; set; } = string.Empty;
+    public string Role { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the user's phone number.
+    /// Gets the cart's phone number.
     /// Must be a valid phone number format following the pattern (XX) XXXXX-XXXX.
     /// </summary>
     public string Phone { get; set; } = string.Empty ;
@@ -39,55 +38,22 @@ public class Cart : BaseEntity, ICart
     public string Password { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the user's role in the system.
-    /// Determines the user's permissions and access levels.
+    /// Gets the unique identifier of the cart.
     /// </summary>
-    public UserRole Role { get;     set; }
-
-    /// <summary>
-    /// Gets the user's current status.
-    /// Indicates whether the user is active, inactive, or blocked in the system.
-    /// </summary>
-    public UserStatus Status { get; set; }
-
-    /// <summary>
-    /// Gets the date and time when the user was created.
-    /// </summary>
-    //public DateTime CreatedAt { get; set; }
-
-    /// <summary>
-    /// Gets the date and time of the last update to the user's information.
-    /// </summary>
-    //public DateTime? UpdatedAt { get; set; }
-
-    /// <summary>
-    /// Gets the unique identifier of the user.
-    /// </summary>
-    /// <returns>The user's ID as a string.</returns>
+    /// <returns>The cart's ID as a string.</returns>
     string ICart.Id => Id.ToString();
 
+    
     /// <summary>
-    /// Gets the username.
+    /// Initializes a new instance of the cart class.
     /// </summary>
-    /// <returns>The username.</returns>
-    string ICart.Username => Username;
-
-    /// <summary>
-    /// Gets the user's role in the system.
-    /// </summary>
-    /// <returns>The user's role as a string.</returns>
-    string ICart.Role => Role.ToString();
-
-    /// <summary>
-    /// Initializes a new instance of the User class.
-    /// </summary>
-    //public User()
+    //public cart()
     //{
     //    CreatedAt = DateTime.UtcNow;
     //}
 
     /// <summary>
-    /// Performs validation of the user entity using the UserValidator rules.
+    /// Performs validation of the cart entity using the cartValidator rules.
     /// </summary>
     /// <returns>
     /// A <see cref="ValidationResultDetail"/> containing:
@@ -96,7 +62,7 @@ public class Cart : BaseEntity, ICart
     /// </returns>
     /// <remarks>
     /// <listheader>The validation includes checking:</listheader>
-    /// <list type="bullet">Username format and length</list>
+    /// <list type="bullet">cartname format and length</list>
     /// <list type="bullet">Email format</list>
     /// <list type="bullet">Phone number format</list>
     /// <list type="bullet">Password complexity requirements</list>
@@ -105,32 +71,28 @@ public class Cart : BaseEntity, ICart
     
 
     /// <summary>
-    /// Activates the user account.
-    /// Changes the user's status to Active.
+    /// Activates the cart account.
+    /// Changes the cart's status to Active.
     /// </summary>
     //public void Activate()
     //{
-    //    Status = UserStatus.Active;
+    //    Status = cartStatus.Active;
     //    UpdatedAt = DateTime.UtcNow;
     //}
 
     ///// <summary>
-    ///// Deactivates the user account.
-    ///// Changes the user's status to Inactive.
+    ///// Deactivates the cart account.
+    ///// Changes the cart's status to Inactive.
     ///// </summary>
     //public void Deactivate()
     //{
-    //    Status = UserStatus.Inactive;
+    //    Status = cartStatus.Inactive;
     //    UpdatedAt = DateTime.UtcNow;
     //}
 
     /// <summary>
-    /// Blocks the user account.
-    /// Changes the user's status to Blocked.
+    /// Blocks the cart account.
+    /// Changes the cart's status to Blocked.
     /// </summary>
-    public void Suspend()
-    {
-        Status = UserStatus.Suspended;
-       // UpdatedAt = DateTime.UtcNow;
-    }
+    
 }

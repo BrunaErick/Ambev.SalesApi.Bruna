@@ -14,7 +14,7 @@ public class DeleteCartHandler : IRequestHandler<DeleteCartCommand, DeleteCartRe
     /// <summary>
     /// Initializes a new instance of DeleteCartHandler
     /// </summary>
-    /// <param name="userRepository">The user repository</param>
+    /// <param name="cartRepository">The cart repository</param>
     /// <param name="validator">The validator for DeleteCartCommand</param>
     public DeleteCartHandler(
         ICartRepository cartRepository)
@@ -38,7 +38,7 @@ public class DeleteCartHandler : IRequestHandler<DeleteCartCommand, DeleteCartRe
 
         var success = await _cartRepository.DeleteAsync(request.Id, cancellationToken);
         if (!success)
-            throw new KeyNotFoundException($"User with ID {request.Id} not found");
+            throw new KeyNotFoundException($"cart with ID {request.Id} not found");
 
         return new DeleteCartResponse { Success = true };
     }

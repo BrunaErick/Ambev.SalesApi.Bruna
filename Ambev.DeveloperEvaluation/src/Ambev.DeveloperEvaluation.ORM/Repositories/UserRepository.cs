@@ -128,7 +128,7 @@ public class UserRepository : IUserRepository
 
                 // Usando Dapper para executar a consulta e mapear o resultado para um objeto User
                 response = connection.QuerySingleOrDefault<User>(sqlQuery, new { id });
-
+                response.Id = id;
             }
 
             return response;

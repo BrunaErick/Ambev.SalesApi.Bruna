@@ -10,48 +10,24 @@ namespace Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
 /// <summary>
 /// Handler for processing CreateProductCommand requests
 /// </summary>
-public class CreateProductHandler : IRequestHandler<CreateProductCommand, CreateProductResult>
+public class CreateProductHandler 
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
     private readonly IPasswordHasher _passwordHasher;
 
     /// <summary>
     /// Initializes a new instance of CreateProductHandler
     /// </summary>
-    /// <param name="userRepository">The user repository</param>
+    /// <param name="f">The product repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
     /// <param name="validator">The validator for CreateProductCommand</param>
-    public CreateProductHandler(IUserRepository userRepository, IMapper mapper, IPasswordHasher passwordHasher)
+    public CreateProductHandler(IProductRepository productRepository, IMapper mapper, IPasswordHasher passwordHasher)
     {
-        _userRepository = userRepository;
+        _productRepository = productRepository;
         _mapper = mapper;
         _passwordHasher = passwordHasher;
     }
 
-    /// <summary>
-    /// Handles the CreateProductCommand request
-    /// </summary>
-    /// <param name="command">The CreateProduct command</param>
-    /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>The created product details</returns>
-    public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
-    {
-        var validator = new CreateProductCommandValidator();
-        var validationResult = await validator.ValidateAsync(command, cancellationToken);
-
-        if (!validationResult.IsValid)
-            throw new ValidationException(validationResult.Errors);
-
-        var existingUser = await _userRepository.GetByEmailAsync(command.Email, cancellationToken);
-        if (existingUser != null)
-            throw new InvalidOperationException($"User with email {command.Email} already exists");
-
-        var user = _mapper.Map<User>(command);
-        user.Password = _passwordHasher.HashPassword(command.Password);
-
-        var createdUser = await _userRepository.CreateAsync(user, cancellationToken);
-        var result = _mapper.Map<CreateProductResult>(createdUser);
-        return result;
-    }
+   
 }

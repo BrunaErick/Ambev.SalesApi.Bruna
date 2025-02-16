@@ -14,9 +14,6 @@ public class CreateUserRequestProfile : Profile
         CreateMap<CreateUserRequest, User>();
         CreateMap<User, CreateUserRequest>();
         CreateMap<CreateUserResponse, User>();
-        CreateMap<User, CreateUserResponse>();
-        CreateMap<GetUserResponse, User>();
-        CreateMap<User, GetUserResponse>();
-
+        CreateMap<User, CreateUserResponse>();      
     }
 }

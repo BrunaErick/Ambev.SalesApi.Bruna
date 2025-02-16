@@ -1,6 +1,7 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Azure.Core;
+using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,29 +35,30 @@ public class ProductRepository : IProductRepository
     /// <param name="Product">The Product to create</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The created Product</returns>
-    public async Task<Guid> CreateAsync(Product Product, CancellationToken cancellationToken = default)
+    public async Task<int> CreateAsync(Product Product, CancellationToken cancellationToken = default)
     {
         var connectionstring = _appSettings.GetConnectionString("DefaultConnection");
-        var id = new Guid();
+        var id = 0;
         try
         {
             var sqlQuery = @" Insert into  [AmbevDb].[dbo].[Products] 
-            (
-                [Productname] 
-                ,[Password] 
-                ,[Phone] 
-                ,[Email] 
-                ,[Status]  
-                ,[Role]
-            ) 
+           ([Title]
+           ,[Price]
+           ,[Description]
+           ,[Category]
+           ,[Image]
+           ,[RatingRate]
+           ,[RatingCount])
+
             OUTPUT INSERTED.Id
              values(
-                @Productname
-                ,@Password
-                ,@Phone
-                ,@Email
-                ,@Status
-                ,@Role)";
+                @Title
+                ,@Price
+                ,@Description
+                ,@Category
+                ,@Image
+                ,@RatingRate
+                ,@RatingCount)";
 
                 using (SqlConnection connection = new SqlConnection(connectionstring))
                 {
@@ -64,13 +66,15 @@ public class ProductRepository : IProductRepository
 
                     using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                     {
-                        command.Parameters.AddWithValue("@Password", Product.Password);
-                        command.Parameters.AddWithValue("@Phone", Product.Phone);
-                        command.Parameters.AddWithValue("@Email", Product.Email);
-                        command.Parameters.AddWithValue("@Status", Product.Status);
-                        command.Parameters.AddWithValue("@Role", Product.Role);
+                        command.Parameters.AddWithValue("@Title", Product.Title);
+                        command.Parameters.AddWithValue("@Price", Product.Price);
+                        command.Parameters.AddWithValue("@Description", Product.Description);
+                        command.Parameters.AddWithValue("@Category", Product.Category);
+                        command.Parameters.AddWithValue("@Image", Product.Image);
+                        command.Parameters.AddWithValue("@RatingRate", Product.RatingRate);
+                        command.Parameters.AddWithValue("@RatingCount", Product.RatingCount);
 
-                        id = (Guid)command.ExecuteScalar();                        
+                    id = (int)command.ExecuteScalar();                        
                     }
                 }
 
@@ -90,7 +94,7 @@ public class ProductRepository : IProductRepository
         }
         catch (Exception ex)
         {
-            return Guid.Empty;
+            return 0;
         }
     }
 
@@ -100,22 +104,47 @@ public class ProductRepository : IProductRepository
     /// <param name="id">The unique identifier of the Product</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The Product if found, null otherwise</returns>
-    public async Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<Product?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
     {
-        return await _context.Products.FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
+        //   return await _context.Products.FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
+
+        var response = new Product();
+
+        var connectionstring = _appSettings.GetConnectionString("DefaultConnection");
+
+        try
+        {
+            var sqlQuery = @" SELECT
+           [Title]
+           ,[Price]
+           ,[Description]
+           ,[Category]
+           ,[Image]
+           ,[RatingRate]
+           ,[RatingCount]
+            FROM  [AmbevDb].[dbo].[Products] 
+            WHERE [ID] = @id";
+
+            using (var connection = new SqlConnection(connectionstring))
+            {
+                connection.Open();
+
+                // Usando Dapper para executar a consulta e mapear o resultado para um objeto User
+                response = connection.QuerySingleOrDefault<Product>(sqlQuery, new { id });
+                response.Id = id;
+            }
+
+            return response;
+        }
+        catch (Exception ex)
+        {
+            //ira retornar o usuario vazio
+        }
+
+        return response;
     }
 
-    /// <summary>
-    /// Retrieves a Product by their email address
-    /// </summary>
-    /// <param name="email">The email address to search for</param>
-    /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>The Product if found, null otherwise</returns>
-    public async Task<Product?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
-    {
-        return await _context.Products
-            .FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
-    }
+   
 
     /// <summary>
     /// Deletes a Product from the database
@@ -123,14 +152,23 @@ public class ProductRepository : IProductRepository
     /// <param name="id">The unique identifier of the Product to delete</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>True if the Product was deleted, false if not found</returns>
-    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default)
     {
-        var Product = await GetByIdAsync(id, cancellationToken);
-        if (Product == null)
-            return false;
+        var connectionstring = _appSettings.GetConnectionString("DefaultConnection");
 
-        _context.Products.Remove(Product);
-        await _context.SaveChangesAsync(cancellationToken);
-        return true;
+        var sqlQuery = @"
+        DELETE FROM [AmbevDb].[dbo].[Products]
+        WHERE [iD] = @id";
+
+        using (var connection = new SqlConnection(connectionstring))
+        {
+            connection.Open();
+
+            // Usando Dapper para executar a consulta de deleção
+            int rowsAffected = connection.Execute(sqlQuery, new { id });
+
+            // Verifica se a exclusão foi bem-sucedida (caso o número de linhas afetadas seja 1)
+            return rowsAffected > 0;
+        }
     }
 }

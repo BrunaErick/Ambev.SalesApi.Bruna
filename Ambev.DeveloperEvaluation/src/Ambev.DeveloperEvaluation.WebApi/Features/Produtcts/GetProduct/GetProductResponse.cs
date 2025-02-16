@@ -7,33 +7,44 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProduct;
 /// </summary>
 public class GetProductResponse
 {
-    /// <summary>
-    /// The unique identifier of the user
-    /// </summary>
-    public Guid Id { get; set; }
 
     /// <summary>
-    /// The user's full name
+    /// Gets the product's Id
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public int Id { get; set; }
 
     /// <summary>
-    /// The user's email address
+    /// Gets the product's Title
     /// </summary>
-    public string Email { get; set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
 
     /// <summary>
-    /// The user's phone number
+    /// Gets the product's Price
     /// </summary>
-    public string Phone { get; set; } = string.Empty;
+    public Decimal Price { get; set; }
 
     /// <summary>
-    /// The user's role in the system
+    /// Gets the product's Description
     /// </summary>
-    public UserRole Role { get; set; }
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// The current status of the user
+    /// Gets the Category
     /// </summary>
-    public UserStatus Status { get; set; }
+    public string Category { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the Image
+    /// </summary>
+    public string Image { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets the product's RatingRate
+    /// </summary>
+    public Decimal RatingRate { get; set; }
+
+    /// <summary>
+    /// Gets the product's RatingCount
+    /// </summary>
+    public int RatingCount { get; set; }
 }
