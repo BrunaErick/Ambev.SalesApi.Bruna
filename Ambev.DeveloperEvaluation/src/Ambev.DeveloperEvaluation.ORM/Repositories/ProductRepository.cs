@@ -41,7 +41,7 @@ public class ProductRepository : IProductRepository
         var id = 0;
         try
         {
-            var sqlQuery = @" Insert into 
+            var sqlQuery = @" Insert into  [AmbevDb].[dbo].[Products] 
            ([Title]
            ,[Price]
            ,[Description]
