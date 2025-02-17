@@ -101,6 +101,12 @@ b, strong {
     border-radius: 8px;
     cursor: pointer;
 }
+.footer {
+    position: absolute !important;
+    background: #1f1f48 !important;
+    color: #ffffff !important;
+    text-align: center !important;
+}
     .addCart:hover {
         border: 1px solid green;
         width: 91px;
