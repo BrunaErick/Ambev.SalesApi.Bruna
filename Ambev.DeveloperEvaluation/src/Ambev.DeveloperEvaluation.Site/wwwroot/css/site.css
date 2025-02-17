@@ -101,3 +101,19 @@ b, strong {
     border-radius: 8px;
     cursor: pointer;
 }
+    .addCart:hover {
+        border: 1px solid green;
+        width: 91px;
+        font-family: arial;
+        height: 30px;
+        background-color: #21a321;
+        float: left;
+        margin-left: 50px;
+        margin-top: -4px;
+        color: white;
+        font-size: 12px;
+        padding-top: 5px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+    }
