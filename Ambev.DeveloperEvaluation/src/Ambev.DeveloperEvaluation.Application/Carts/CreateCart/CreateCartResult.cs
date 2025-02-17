@@ -13,5 +13,5 @@ public class CreateCartResult
     /// Gets or sets the unique identifier of the newly created cart.
     /// </summary>
     /// <value>A GUID that uniquely identifies the created cart in the system.</value>
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 }

@@ -69,6 +69,8 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Produtcts
                     Message = "Error",
                     Data = _mapper.Map<CreateProductResponse>(command)
                 });
+
+
         }
 
         /// <summary>
@@ -100,13 +102,42 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Produtcts
                     Data = _mapper.Map<GetProductResponse>(response.Result)
                 });
         }
-    
+
+
+        /// <summary>
+        /// Retrieves all Products
+        /// </summary>
+        [HttpGet("GetAllProducts")]
+        [ProducesResponseType(typeof(List<GetProductResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
+        {
+            var response = _business.GetAllAsync(cancellationToken);
+
+            if (((List<Product>)response.Result).Count > 0)
+                return Ok(new ApiResponseWithData<List<GetProductResponse>>
+                {
+                    Success = true,
+                    Message = "Product retrieved successfully",
+                    Data = _mapper.Map<List<GetProductResponse>>(response.Result)
+                });
+            else
+                return NotFound(new ApiResponseWithData<List<GetProductResponse>>
+                {
+                    Success = false,
+                    Message = "Not Found",
+                    Data = _mapper.Map<List<GetProductResponse>>(response.Result)
+                });
+        }
+
+
 
         /// <summary>
         /// Deletes a Product by their ID
         /// </summary>
-        /// <param name="id">The unique identifier of the Product to delete</param>
-        /// <param name="cancellationToken">Cancellation token</param>
+        /// <param name = "id" > The unique identifier of the Product to delete</param>
+        /// <param name = "cancellationToken" > Cancellation token</param>
         /// <returns>Success response if the Product was deleted</returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]

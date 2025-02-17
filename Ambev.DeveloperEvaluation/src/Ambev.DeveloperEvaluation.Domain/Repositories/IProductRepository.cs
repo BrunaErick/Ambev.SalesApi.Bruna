@@ -24,6 +24,13 @@ public interface IProductRepository
     Task<Product?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Retrieves all Products
+    /// </summary>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The Product if found, null otherwise</returns>
+    Task<List<Product>> GetAllAsync(CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Deletes a Product from the repository
     /// </summary>
     /// <param name="id">The unique identifier of the Product to delete</param>

@@ -58,6 +58,17 @@ public class Program
                 );
             });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins", policy =>
+                {
+                    policy.AllowAnyOrigin()    // Permite qualquer origem
+                          .AllowAnyMethod()    // Permite qualquer método (GET, POST, etc.)
+                          .AllowAnyHeader();   // Permite qualquer cabeçalho
+                });
+            });
+
+
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             builder.Services.AddScoped<IUserBusiness, UserBusiness>();
             builder.Services.AddScoped<ICartBusiness, CartBusiness>();
@@ -93,6 +104,8 @@ public class Program
 
             var app = builder.Build();
             app.UseMiddleware<ValidationExceptionMiddleware>();
+
+            app.UseCors("AllowAllOrigins"); // Habilita a política CORS
 
             if (app.Environment.IsDevelopment())
             {

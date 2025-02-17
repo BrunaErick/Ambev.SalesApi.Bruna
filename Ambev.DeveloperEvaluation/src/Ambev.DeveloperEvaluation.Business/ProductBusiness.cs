@@ -44,6 +44,15 @@ namespace Ambev.DeveloperEvaluation.Business
         }
 
         /// <summary>
+        /// Retrieves all Products
+        /// </summary>
+        /// <returns>The Product if found, null otherwise</returns>
+        public async Task<List<Product>> GetAllAsync(CancellationToken cancellationToken = default)
+        {
+            return await _repo.GetAllAsync(cancellationToken);
+        }
+
+        /// <summary>
         /// Deletes a Product from the database
         /// </summary>
         /// <param name="id">The unique identifier of the Product to delete</param>

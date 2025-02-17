@@ -27,7 +27,7 @@ namespace Ambev.DeveloperEvaluation.Business
         /// <param name="Cart">The Cart to create</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The created Cart</returns>
-        public async Task<Guid> CreateAsync(Cart Cart, CancellationToken cancellationToken = default)
+        public async Task<int> CreateAsync(Cart Cart, CancellationToken cancellationToken = default)
         {
            return  await _repo.CreateAsync(Cart, cancellationToken);
         }
@@ -38,7 +38,7 @@ namespace Ambev.DeveloperEvaluation.Business
         /// <param name="id">The unique identifier of the Cart</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The Cart if found, null otherwise</returns>
-        public async Task<Cart?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<Cart?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
         {
             return await _repo.GetByIdAsync(id, cancellationToken);
         }
@@ -49,7 +49,7 @@ namespace Ambev.DeveloperEvaluation.Business
         /// <param name="id">The unique identifier of the Cart to delete</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>True if the Cart was deleted, false if not found</returns>
-        public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default)
         {
             return await _repo.DeleteAsync(id, cancellationToken);
         }

@@ -37,6 +37,18 @@ public class ProductRepository : IProductRepository
     /// <returns>The created Product</returns>
     public async Task<int> CreateAsync(Product Product, CancellationToken cancellationToken = default)
     {
+        /*
+              Entendo que seguindo os padrões do Entity seria
+
+            _context.Products.Add(Product);
+            _context.SaveChanges();
+
+            Porém o Migrator não reconheceu meu usuário do banco local, 
+            impedindo minha conexão, então fiz do modo tradicional abaixo
+            para entregar a tempo o teste funcionando
+
+             */
+
         var connectionstring = _appSettings.GetConnectionString("DefaultConnection");
         var id = 0;
         try
@@ -77,18 +89,6 @@ public class ProductRepository : IProductRepository
                     id = (int)command.ExecuteScalar();                        
                     }
                 }
-
-            /*
-              Entendo que seguindo os padrões do Entity seria
-
-            _context.Products.Add(Product);
-            _context.SaveChanges();
-
-            Porém o Migrator não reconheceu meu usuário do banco local, 
-            impedindo minha conexão, então fiz do modo tradicional acima
-            para entregar a tempo o teste
-
-             */
 
             return id;
         }
@@ -144,7 +144,47 @@ public class ProductRepository : IProductRepository
         return response;
     }
 
-   
+    /// <summary>
+    /// Retrieves all Products
+    /// </summary>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The Product if found, null otherwise</returns>
+    public async Task<List<Product>> GetAllAsync(CancellationToken cancellationToken = default)
+    {
+        var response = new List<Product>();
+        var connectionstring = _appSettings.GetConnectionString("DefaultConnection");
+
+        try
+        {
+            var sqlQuery = @"SELECT
+                            [Id]
+                            ,[Title]
+                            ,[Price]
+                            ,[Description]
+                            ,[Category]
+                            ,[Image]
+                            ,[RatingRate]
+                            ,[RatingCount]
+                         FROM [AmbevDb].[dbo].[Products]";
+
+            using (var connection = new SqlConnection(connectionstring))
+            {
+                connection.Open();
+
+                // Usando Dapper para executar a consulta e mapear o resultado para uma lista de objetos Product
+                response = (await connection.QueryAsync<Product>(sqlQuery)).ToList();
+            }
+
+            return response;
+        }
+        catch (Exception ex)
+        {
+            // Log de erro ou alguma outra lógica se necessário
+        }
+
+        return response;
+    }
+
 
     /// <summary>
     /// Deletes a Product from the database

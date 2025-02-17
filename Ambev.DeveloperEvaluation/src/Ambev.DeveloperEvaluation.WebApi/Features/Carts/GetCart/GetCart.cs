@@ -12,7 +12,7 @@ public class GetCart : Profile
     /// </summary>
     public GetCart()
     {
-        CreateMap<Guid, Application.Carts.GetCart.GetCartCommand>()
+        CreateMap<int, Application.Carts.GetCart.GetCartCommand>()
             .ConstructUsing(id => new Application.Carts.GetCart.GetCartCommand(id));
     }
 }

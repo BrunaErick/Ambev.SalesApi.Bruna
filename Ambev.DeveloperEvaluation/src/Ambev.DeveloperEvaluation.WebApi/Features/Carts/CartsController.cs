@@ -50,9 +50,9 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Carts
             var command = _mapper.Map<Cart>(request);
 
             var response = _business.CreateAsync(command, cancellationToken);
-            if (response.Result != Guid.Empty)
+            if (response.Result > 0)
             {
-                command.Id = (Guid)response.Result;
+                command.Id = (int)response.Result;
                 return Created(string.Empty, new ApiResponseWithData<CreateCartResponse>
                 {
                     Success = true,
@@ -79,7 +79,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Carts
         [ProducesResponseType(typeof(ApiResponseWithData<GetCartResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetCart([FromRoute] Guid id, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetCart([FromRoute] int id, CancellationToken cancellationToken)
         {
             var request = new GetCartRequest { Id = id };
             var validator = new GetCartRequestValidator();
@@ -109,7 +109,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Carts
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteCart([FromRoute] Guid id, CancellationToken cancellationToken)
+        public async Task<IActionResult> DeleteCart([FromRoute] int id, CancellationToken cancellationToken)
         {
             var request = new DeleteCartRequest { Id = id };
             //var validator = new DeleteCartRequestValidator();
