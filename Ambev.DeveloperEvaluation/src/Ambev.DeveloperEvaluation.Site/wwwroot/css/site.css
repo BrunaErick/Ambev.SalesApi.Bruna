@@ -71,6 +71,57 @@ b, strong {
     font-size: 13px;
     font-family: arial;
 }
+.navbar {
+    display: none;
+}
+#CartIntens {
+    float: left;
+    margin-top: -46px;
+}
+#cart {
+    border: 1px solid #282940;
+    width: 372px;
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    background-color: white;
+    text-align: left;
+    border-radius: 21px;
+    min-height:100px;
+}
+.cartQtde {
+    float: left;
+    width: 21px;
+}
+.cartItem {
+    float: left;
+    width: 191px;
+    overflow: hidden;
+    height: 23px;
+}
+.productItem {
+    float: left;
+    width: 264px;
+    margin-left: 82px;
+    height: 36px;
+    clear: both;
+}
+.imgCart {
+    width: 70px;
+    margin-left: 5px;
+    margin-top: 7px;
+}
+.btnMais {
+    width: 19px;
+    float: left;
+    cursor:pointer;
+}
+.btnMenos {
+    width: 19px;
+    float: left;
+    margin-left: 10px;
+    cursor: pointer;
+}
 .qtde {
     font-weight: bold;
     font-size: 14px;
